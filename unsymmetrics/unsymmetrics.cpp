@@ -1,6 +1,8 @@
 ﻿// unsymmetrics.cpp : Defines the entry point for the application.
 //
-
+#include "imgui.h"
+#include "imgui_impl_glfw.h"
+#include "imgui_impl_opengl3.h"
 #include "unsymmetrics.h"
 #include <GLFW/glfw3.h>
 
@@ -22,6 +24,11 @@ int main(void)
         glfwTerminate();
         return -1;
     }
+
+    IMGUI_CHECKVERSION();
+    ImGuiIO& io = ImGui::GetIO(); (void)io;
+    ImGui::StyleColorsDark();
+ 
 
     /* Make the window's context current */
     glfwMakeContextCurrent(window);

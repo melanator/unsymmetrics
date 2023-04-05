@@ -2,3 +2,7 @@ out
 
 # VS
 .vs
+
+# ImGUI files
+external/imgui-docking/*.h
+external/imgui-docking/*.cpp
