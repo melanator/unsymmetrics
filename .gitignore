@@ -4,5 +4,5 @@ out
 .vs
 
 # ImGUI files
-external/imgui-docking/*.h
-external/imgui-docking/*.cpp
+external/imgui/*.h
+external/imgui/*.cpp
