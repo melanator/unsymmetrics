@@ -1,54 +1,37 @@
-﻿// unsymmetrics.cpp : Defines the entry point for the application.
-//
-#include "imgui.h"
+﻿#include "imgui.h"
 #include "imgui_impl_glfw.h"
 #include "imgui_impl_opengl3.h"
-#include "unsymmetrics.h"
-#include <GLFW/glfw3.h>
+#include <stdio.h>
+#include <iostream>
+#include <GLFW/glfw3.h> // Will drag system OpenGL headers
+#include <glad/glad.h>
 
-using namespace std;
-
-
-int main(void)
+// Main code
+int main(int, char**)
 {
-    GLFWwindow* window;
+    glfwInit();
 
-    /* Initialize the library */
-    if (!glfwInit())
-        return -1;
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-    /* Create a windowed mode window and its OpenGL context */
-    window = glfwCreateWindow(640, 480, "Hello World", NULL, NULL);
-    if (!window)
-    {
+    GLFWwindow* window = glfwCreateWindow(800, 800, "Hello", NULL, NULL);
+    if (window == nullptr) {
+        std::cout << "Failed to create GLFW window" << std::endl;
         glfwTerminate();
         return -1;
     }
-    
-    /*
-    IMGUI_CHECKVERSION();
-    ImGuiIO& io = ImGui::GetIO(); (void)io;
-    ImGui::StyleColorsDark();
-    ImGui_ImplGlfw_InitForOpenGL(window, true);
-    ImGui_ImplOpenGL3_Init("#version 460");
-    */
 
-    /* Make the window's context current */
     glfwMakeContextCurrent(window);
 
-    /* Loop until the user closes the window */
-    while (!glfwWindowShouldClose(window))
-    {
-        /* Render here */
-        glClear(GL_COLOR_BUFFER_BIT);
+    
 
-        /* Swap front and back buffers */
-        glfwSwapBuffers(window);
-
-        /* Poll for and process events */
+    while (!glfwWindowShouldClose(window)) {
         glfwPollEvents();
     }
 
+
+    glfwDestroyWindow(window);
     glfwTerminate();
     return 0;
 }

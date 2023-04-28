@@ -7,8 +7,8 @@ set( SOURCE_FILES
 )
     
 add_executable( ${PROJECT_NAME} ${SOURCE_FILES} )
-target_link_libraries( ${PROJECT_NAME} ${OPENGL_LIBRARIES} glfw imgui )
-target_include_directories(${PROJECT_NAME} PRIVATE "${IMGUI_DIR}")
+target_link_libraries( ${PROJECT_NAME} ${OPENGL_LIBRARIES} glfw imgui glad )
+target_include_directories(${PROJECT_NAME} PRIVATE "${IMGUI_DIR}" "${GLAD_DIR}")
 
 if( MSVC )
     if(${CMAKE_VERSION} VERSION_LESS "3.6.0") 
