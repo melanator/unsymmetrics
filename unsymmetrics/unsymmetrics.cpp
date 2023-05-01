@@ -1,7 +1,7 @@
-﻿#define GLEW_STATIC
-#include "imgui.h"
+﻿#include "imgui.h"
 #include "imgui_impl_glfw.h"
 #include "imgui_impl_opengl3.h"
+// #include "glad.h"
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include <iostream>
@@ -35,6 +35,17 @@ int main(void)
         std::cerr << "GLEW Init Error" << std::endl;
 
     std::cout << glGetString(GL_VERSION) << std::endl;
+
+    float positions[6] = {
+        -0.5f, 0.5f,
+         0.0f, 0.5f,
+         0.5, -0.5f
+    };
+
+    unsigned int buffer;
+    glGenBuffers(1, &buffer);
+    glBindBuffer(GL_ARRAY_BUFFER, buffer);
+    glBufferData(GL_ARRAY_BUFFER, 6 * sizeof(float));
 
     /* Loop until the user closes the window */
     while (!glfwWindowShouldClose(window))
