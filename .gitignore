@@ -3,6 +3,14 @@ out
 # VS
 .vs
 
+# CLion
+.idea
+cmake-build-debug
+
 # ImGUI files
 external/imgui/*.h
 external/imgui/*.cpp
+
+# Glad files
+external/glad/*.h
+external/glad/*.c

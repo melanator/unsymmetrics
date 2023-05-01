@@ -1,8 +1,0 @@
-out
-
-# VS
-.vs
-
-# ImGUI files
-external/imgui/*.h
-external/imgui/*.cpp

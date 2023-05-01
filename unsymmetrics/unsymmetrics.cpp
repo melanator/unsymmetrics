@@ -1,37 +1,54 @@
-﻿#include "imgui.h"
+﻿#define GLEW_STATIC
+#include "imgui.h"
 #include "imgui_impl_glfw.h"
 #include "imgui_impl_opengl3.h"
-#include <stdio.h>
+#include <GL/glew.h>
+#include <GLFW/glfw3.h>
 #include <iostream>
-#include <GLFW/glfw3.h> // Will drag system OpenGL headers
-#include <glad/glad.h>
 
-// Main code
-int main(int, char**)
+int main(void)
 {
-    glfwInit();
+    GLFWwindow* window;
 
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+    
 
-    GLFWwindow* window = glfwCreateWindow(800, 800, "Hello", NULL, NULL);
-    if (window == nullptr) {
-        std::cout << "Failed to create GLFW window" << std::endl;
+    /* Initialize the library */
+    if (!glfwInit())
+        return -1;
+
+    
+    
+
+    /* Create a windowed mode window and its OpenGL context */
+    window = glfwCreateWindow(640, 480, "Hello World", NULL, NULL);
+    if (!window)
+    {
         glfwTerminate();
         return -1;
     }
 
+    /* Make the window's context current */
     glfwMakeContextCurrent(window);
 
-    
+    /* Initialize GLEW */
+    if (glewInit() != GLEW_OK)
+        std::cerr << "GLEW Init Error" << std::endl;
 
-    while (!glfwWindowShouldClose(window)) {
+    std::cout << glGetString(GL_VERSION) << std::endl;
+
+    /* Loop until the user closes the window */
+    while (!glfwWindowShouldClose(window))
+    {
+        /* Render here */
+        glClear(GL_COLOR_BUFFER_BIT);
+
+        /* Swap front and back buffers */
+        glfwSwapBuffers(window);
+
+        /* Poll for and process events */
         glfwPollEvents();
     }
 
-
-    glfwDestroyWindow(window);
     glfwTerminate();
     return 0;
 }
